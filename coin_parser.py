@@ -30,8 +30,10 @@ class CoinlayerParser:
 
     def get_historical_data(self, date: str) -> dict | str:
         try:
-            date = datetime.strftime(date, r'%y-%m-%d')
+            date_obj = datetime.strptime(date, '%Y-%m-%d')
+            date_str = date_obj.strftime('%Y-%m-%d')
+            return self.__get_keys_values(f'{date_str}?access_key={self.api_access_key}')
         except Exception as ex:
-            return f'{ex}\n enter the date in the correct format: YYYY-MM-DD'
-        finally:
-            return self.__get_keys_values(f'{date}?access_key={self.api_access_key}')
+            return f'{ex}\n enter a date in the correct format: YYYY-MM-DD'
+
+
