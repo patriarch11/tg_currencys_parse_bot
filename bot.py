@@ -48,7 +48,6 @@ async def get_historical_rates(message: types.Message):
     date = message.text.split(' ')[1]
     currency = message.text.split(' ')[2].upper()
     data = coin_parser.get_historical_data(date)
-    print(data)
     if isinstance(data, str):
         await message.answer(data)
     if currency == 'ALL':
