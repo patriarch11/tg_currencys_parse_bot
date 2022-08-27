@@ -32,7 +32,6 @@ async def start_command(message: types.Message):
 async def get_live_rates(message: types.Message):
     data = coin_parser.get_live_data()
     currency = message.text.split(' ')[1].upper()
-    print(data)
     if currency == 'ALL':
         with open('all.txt', 'w') as file:
             data_gen = (f'{key} --- {value} USD' for key, value in data['rates'].items())
